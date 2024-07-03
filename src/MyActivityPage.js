@@ -6,7 +6,7 @@ export default function MyActivity(){
         <div className="MyActivity_bg">
         <div className="UpcommingBook">
             <div className="activityRight">
-                <p className="booking_heading" style={{marginLeft: "5%"}}>MY ACTIVITY</p>
+                <p className="booking_heading myActivity_text" style={{marginLeft: "5%"}}>MY ACTIVITY</p>
                 <div className="activity_img">
                     <div className="allFutureBookings"><p>Upcomming Events</p></div>
                 </div>

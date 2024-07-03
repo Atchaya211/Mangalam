@@ -29,6 +29,7 @@ export default function MyAccount(){
                 <p className="MyAccText">Customer address</p>
             </div>
             <hr className="horizontal-line"/>
+            <a href="/EditProfile"><button className="edit-profile-btn">Edit</button></a>
             </div>
         
         </div>

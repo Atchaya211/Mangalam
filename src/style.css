@@ -6,7 +6,7 @@
 .body{
     overflow: hidden;
 }
-.login_signin_wrap,.home,.booking_bg,.MyActivity_bg,.about_bg,.MyAccount-bg,.services-bg{
+.login_signin_wrap,.home,.booking_bg,.MyActivity_bg,.about_bg,.MyAccount-bg,.services-bg,.dispVendors-bg,.editProfile-bg{
     background-color: rgb(228, 228, 228);
     height: 93vh;
     width: 100vw;
@@ -218,8 +218,12 @@
 .MyAccPic{
     height: 300px;
     position: absolute;
-    /* z-index: 2; */
     margin: -480px 0px 0px 71%;
+}
+.MyHelpPic{
+    position: absolute;
+    height: 100px;
+    margin: 40px;
 }
 .imgUpdload{
     /* border: 1px solid rgb(171, 170, 170); */
@@ -384,20 +388,22 @@
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content:end;
-    z-index: 10;
+    z-index: 100;
   }
   
   .subMenu_Content {
-    background: #fff;
+    position: fixed;
+    background: #ffffff;
     margin-right: 50px;
     margin-top: 3%;
     padding: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 350px;
     height: 400px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
   .subMenu_Link{
     color: black;
@@ -407,8 +413,14 @@
   .selfInfo{
     width: 100%;
     height: 150px;
+    background-color: aqua;
+    margin-left: -20px;
+    margin-bottom: 20px;
+    align-items: center;
     display: grid;
     grid-template-columns: 60% 30%;
+    column-gap: 20px;
+    
   }
   .selfData{
     /* border: 2px solid black; */
@@ -648,35 +660,46 @@
     margin-left: 5%;
     margin-bottom: 5%;
 }
-.services-bg{
-    background-color: #fec5ea;
+.edit-profile-btn{
+    width: 15%;
+    height: 8%;
+    margin-left: 40%;
 }
-.services-body{
+.editProfile-body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+    padding-left: 5%;
+}
+.services-bg,.dispVendors-bg{
+    background-color: #fec5ea;
+    z-index: -1;
+}
+.services-body,.dispVendors-body{
     height: 90%;
     width: 100%;
-    /* border: 2px solid black; */
     margin-top: 4%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    /* justify-content: center; */
 }
-.services-body > h1{
-    /* color: rgb(182, 121, 6); */
+.services-body > h1,.dispVendors-body > h1{
     color: green;
     font-size:40px;
 }
 .corner-bg{
     position: absolute;
-    /* border: 2px solid black; */
     height: 50%;
     width: 50%;
     background: url("./images/Bg-corner.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
-    margin: 245px 0px 0px 767px;
+    margin: 245px 0px 0px 768px;
 }
 .border-bg{
     position: absolute;
@@ -689,18 +712,9 @@
     margin-right: 80%;
 }
 .service-center{
-    margin-top: 3%;
-    margin-right: 10%;
-    height: 80%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    overflow: visible;
-    box-sizing: border-box;
+    margin: 0% 10% 0% 0%;
 }
+
 @keyframes moveUpDown {
     0% {
         transform: translateY(0) scale(1.2);
@@ -733,7 +747,6 @@
     overflow: hidden;
 }
 .service-text{
-    /* color: #0f77f7; */
     color: brown;
     text-decoration: none;
     font-size: large;
@@ -747,6 +760,140 @@
 .inside-center{
     display: flex;
     justify-content: space-around;
+}
+.dispVendor-wrap::-webkit-scrollbar{
+    display: none;
+}
+.dispVendor-wrap {
+    scrollbar-width: none;
+}
+.dispVendor-wrap{
+   margin-top: 5%;
+    height: 70%;   
+    width: 85%;
+    /* background-color: rgba(251, 149, 215, 0.5); */
+    background-color: rgba(128, 0, 128, 0.492);
+    border-radius: 20px 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap; 
+    padding: 0px 15px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    scroll-behavior: smooth;
+    pointer-events: auto;
+    z-index: 1;
+}
+.vendor-details {
+    /* border: 1px solid #ccc; */
+    width: 30%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-right: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .dispVendor-img{
+    top: 0;
+    left: 0;
+    height: 60%;
+    width: 100%;
+  }
+.vendor-text{
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 5px 15px;
+}
+.vendor-name{
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor:default;
+}
+.star-rating {
+    display: flex;
+    direction: row;
+}
+
+.star {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-top: -5px;
+}
+
+.star.filled {
+    color: #f5b301;
+}
+.vendor-btn{
+    border: 0px;
+    height: 30px;
+    width: 150px;
+    font-size: small;
+    background-color: #fb53c0;
+    color: #fff;
+}
+.about-body{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.aboutText{
+    height: 70vh;
+    width: 70%;
+    margin: 120px ;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.our-details{
+    margin: 40px 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    word-spacing: 5px;
+    line-height: 25px;
+    color: rgb(104, 104, 104);
+}
+.our-contact{
+    /* border: 2px solid black; */
+    position: absolute;
+    width: 40%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 28%;
+    font-size: large;
+}
+.our-details > span, .our-phone > span{
+    color: #f56701;
+}
+.help{
+    display: grid;
+    grid-template-columns: 49% 49%;
+}
+.help-img,.help-details{
+    height: 110%;
+    width: 100%;
+}
+.help-img{
+    background: url("./images/helpline.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.help-details{
+    display: flex;
+    flex-direction: column;
+
 }
 @media screen and (max-width: 780px) {
     .App-body{
@@ -779,7 +926,7 @@
         border-radius: 1em;
         padding: 5px;
     }
-    .login_signin-body{
+    .login_signin-body,.about-body{
         display: grid;
         grid-template-columns: 40% 60%;
         column-gap: 25px;
@@ -947,7 +1094,7 @@
     }
     .booking_heading{
         font-size: large;
-        margin-top: 12%;
+        margin-top: 15%;
     }
     .booking_wrap{
         grid-template-columns: 70% 30%;
@@ -968,7 +1115,14 @@
     }
     .lastText{
         font-size: medium;
-        margin: -150px 0px 0px 200px;
+        margin: -130px 0px 0px 200px;
+    }
+    .myActivity_text{
+        margin-top: 20%;
+    }
+    .activity_img{
+        width: 100%;
+        margin: 10% 10% 0% 0%;
     }
     .MyAccount-img{
         width: 80%;
@@ -976,8 +1130,88 @@
         border-radius: 50%;
         margin-left: -30px;
         margin-top: -50px;
-      }
-    body, html {
-        overflow-x: hidden;
-      }
+}
+.eventPlanner{
+    display: none;
+}
+.activityLeft{
+    margin-top: -30%;
+}
+.services-body,.dispVendors-body{
+    height: 90%;
+    margin-top: 9%;
+}
+.services-body > h1,.dispVendors-body > h1{
+    font-size:30px;
+}
+.corner-bg{
+    height: 30%;
+    width: 30%;
+    margin: 375px 0px 0px 550px;
+}
+.border-bg{
+    height: 90%;
+    width: 35%;
+    margin-right: 72%;
+}
+.service-center{
+    margin: 0% 0% 0% 10%;
+}
+.service-link{
+    height: 180px;
+    width: 160px;
+}
+.service-text{
+    font-size: medium;
+}
+.dispVendor-wrap{
+    height: 60%;
+    margin-top: 12%;
+}
+.vendor-details {
+    width: 40%;
+    height: 70%;
+  }
+  .dispVendor-img{
+    top: 0;
+    left: 0;
+    height: 55%;
+    width: 100%;
+  }
+.vendor-text{
+    font-size: small;
+}
+.star {
+    font-size: 1rem;
+}
+.vendor-btn{
+    border: 0px;
+    height: 20px;
+}
+.about-common-img{
+    height: 50%;
+    width: 120%;
+}
+.about-common{
+    /* border: 2px solid black; */
+    width: 200px;
+}
+.aboutText{
+    height: 80vh;
+    width: 105%;
+    margin: 70px 0px 0px -70px;
+}
+.our-details{
+    font-size: medium;
+}
+.our-contact{
+    width: 70%;
+    margin: 65% 0% 0% 20%;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+}
+body, html {
+    overflow-x: hidden;
+}
 }

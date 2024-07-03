@@ -1,0 +1,62 @@
+[
+  {
+      "name": "Aarav Patel",
+      "email": "aarav.patel@example.com",
+      "phone": "+91-9876543210",
+      "location": "Mumbai"
+  },
+  {
+      "name": "Aisha Sharma",
+      "email": "aisha.sharma@example.com",
+      "phone": "+91-9876543211",
+      "location": "Delhi"
+  },
+  {
+      "name": "Rohit Verma",
+      "email": "rohit.verma@example.com",
+      "phone": "+91-9876543212",
+      "location": "Bangalore"
+  },
+  {
+      "name": "Priya Singh",
+      "email": "priya.singh@example.com",
+      "phone": "+91-9876543213",
+      "location": "Chennai"
+  },
+  {
+      "name": "Karan Mehta",
+      "email": "karan.mehta@example.com",
+      "phone": "+91-9876543214",
+      "location": "Hyderabad"
+  },
+  {
+      "name": "Simran Kaur",
+      "email": "simran.kaur@example.com",
+      "phone": "+91-9876543215",
+      "location": "Kolkata"
+  },
+  {
+      "name": "Vikram Reddy",
+      "email": "vikram.reddy@example.com",
+      "phone": "+91-9876543216",
+      "location": "Pune"
+  },
+  {
+      "name": "Neha Gupta",
+      "email": "neha.gupta@example.com",
+      "phone": "+91-9876543217",
+      "location": "Ahmedabad"
+  },
+  {
+      "name": "Arjun Kapoor",
+      "email": "arjun.kapoor@example.com",
+      "phone": "+91-9876543218",
+      "location": "Jaipur"
+  },
+  {
+      "name": "Sanya Ahuja",
+      "email": "sanya.ahuja@example.com",
+      "phone": "+91-9876543219",
+      "location": "Lucknow"
+  }
+]

@@ -8,9 +8,12 @@ import Home from './Home';
 import About from './About';
 import Login from "./LoginPage";
 import MyAccount from "./MyAccount";
+import EditProfile from "./EditProfile";
 import Booking from "./Booking";
 import MyActivity from "./MyActivityPage";
 import Services from "./Services";
+import DisplayVendors from "./displayVendors";
+import Help from "./Help";
 import Footer from "./Footer";
 function App() {
   return (
@@ -23,7 +26,10 @@ function App() {
         <Route path="/LoginPage" element={<Login/>}/>
         <Route path="/MyActivity" element={<MyActivity/>}/>
         <Route path="/MyAccount" element={<MyAccount/>}/>
+        <Route path="/EditProfile" element={<EditProfile/>}/>
         <Route path="/Booking" element={<Booking/>}/>
+        <Route path="/DisplayVendors" element={<DisplayVendors/>}/>
+        <Route path="/Help" element={<Help/>}/>
         <Route path="/Services" element={<Services/>}/>
       </Routes>
       <Footer/>

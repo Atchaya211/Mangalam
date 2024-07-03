@@ -16,7 +16,6 @@ export default function Nav()
         setshowProfile(true);
     }
     const hideProfileMenu=()=>{
-        handle();
         setshowProfile(false);
     }
     return(

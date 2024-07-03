@@ -1,7 +1,8 @@
 import React from 'react';
 import "./style.css";
-import hinduIcon from "./images/hindu_icon.png";
-import christIcon from "./images/christian_icon.png";
+import marraigeIcon from "./images/hindu_icon.png";
+import haldiIcon from "./images/haldi_icon.png";
+// import christIcon from "./images/christian_icon.png";
 import cake from "./images/cake.png";
 import engagementIcon from "./images/engagement.png";
 import otherIcon from "./images/celebrations.png";
@@ -20,7 +21,7 @@ export default function Home(){
     const navigate = useNavigate();
     // const [eventType, setEventType ] = useState("HIII");
     const handleNavigation = (type) => {
-        navigate('/services', { state: { data: type } });
+        navigate('/services', { state: {  data: type } });
     };
     return(
         <div className="home">
@@ -37,18 +38,18 @@ export default function Home(){
                     </div>
                     <div className="events_link">
                         <a href='/Services' className="events_icon">
-                            <img src={hinduIcon} alt="" className='events_img' onClick={(e)=>{
+                            <img src={marraigeIcon} alt="" className='events_img' onClick={(e)=>{
                                 e.preventDefault();
-                                handleNavigation("Hindu Marraige");
+                                handleNavigation("Marraige");
                             }}/>
-                            <p className="event">Hindu Marraige</p>
+                            <p className="event">Marraige</p>
                         </a>
                         <a href='/Services' className="events_icon" onClick={(e)=>{
                             e.preventDefault();
-                            handleNavigation("Christian Marraige");
+                            handleNavigation("Haldi");
                         }}>
-                            <img src={christIcon} alt="" className='events_img'/>
-                            <p className="event">Christian Marraige</p>
+                            <img src={haldiIcon} alt="" className='events_img'/>
+                            <p className="event">Haldi</p>
                         </a>
                         <a href='/Services' className="events_icon">
                             <img src={engagementIcon} alt="" className='events_img' onClick={(e)=>{

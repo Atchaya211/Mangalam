@@ -13,7 +13,7 @@ export default function SubMenuProfile({onClose}){
             </div>
             <a href="/MyAccount" className='subMenu_Link' onClick={onClose} >MY ACCOUNT</a>
             <a href="/MyActivity" className='subMenu_Link' onClick={onClose} >BOOKINGS</a>
-            <a href="/" className='subMenu_Link' onClick={onClose} >HELP</a>
+            <a href="/Help" className='subMenu_Link' onClick={onClose} >HELP</a>
             <a href="/" className='subMenu_Link' onClick={onClose} >SETTINGS</a>
             <a href="/" className='subMenu_Link' onClick={onClose} >LOGOUT</a>
         </div>

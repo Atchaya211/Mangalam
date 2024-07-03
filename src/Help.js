@@ -8,9 +8,7 @@ export default function Help(){
                 <div className="booking">
                     <div className="booking_wrap help">
                         <div className="help-img"></div>
-                        <div className="help-details">
-                            
-                        </div>
+                        <div className="help-details"></div>
                     </div>
                 </div>
                 <img src={pic1} alt="" className="MyAccPic" />

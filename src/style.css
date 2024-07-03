@@ -1109,6 +1109,9 @@
         margin-left: 490px;
         margin-top: -550px;
     }
+    .helpPic{
+        margin-top: -400px;
+    }
     .booking_btn{
         margin-left: 190px;
         margin-top: -50px;
@@ -1210,6 +1213,10 @@
     font-size: medium;
     display: flex;
     flex-direction: column;
+}
+.help-img{
+    width: 70%;
+    height: 90%;
 }
 body, html {
     overflow-x: hidden;

@@ -11,7 +11,7 @@ export default function Help(){
                         <div className="help-details"></div>
                     </div>
                 </div>
-                <img src={pic1} alt="" className="MyAccPic" />
+                <img src={pic1} alt="" className="MyAccPic helpPic" />
            </div> 
         </>
     );

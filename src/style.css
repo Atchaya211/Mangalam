@@ -235,6 +235,15 @@
     display: grid;
     grid-template-columns: 50% 50%;
 }
+.gst-inp{
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: large;
+    margin: -5px 0px 5px 90px;
+}
+.gst-sub{
+    margin-left: 50px;
+}
 .addTextarea{
     width: 90%;
     align-self: center;
@@ -319,6 +328,10 @@
 }
 .fpass{
     margin: 50px;
+}
+.signin-nav-div{
+    margin: 0 10% 0 -20%;
+    display: flex;
 }
 .footer{
     height: 30px;
@@ -1061,6 +1074,10 @@
     }
     .fpass{
         margin: 10px;
+    }
+    .signin-nav-div{
+        margin-top: 15%;
+        display: block;
     }
     .copyright{
         display: flex;

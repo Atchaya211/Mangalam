@@ -5,6 +5,7 @@ import eyeClose  from "./images/eye-slash-solid.svg";
 import logoImg from "./images/logo.png";
 import SignInPage from "./SignInPage";
 import ForgetPassword from "./ForgetPassword";
+import VendorSignIn from "./VendorSignIn";
 export default function LoginPage(){
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [type, setType] = useState('password');
@@ -53,7 +54,7 @@ export default function LoginPage(){
         </div>
         </div>
         {(show ==="Login") && (<div className="form-wrap">
-            <form action="" className="login" onSubmit={handleSubmit}>
+            <form action="" method="post" enctype="application/x-www-form-urlencoded" className="login" onSubmit={handleSubmit}>
                 <p className="welcome-msg">Welcome Back!!!</p>
                 <input type="email" placeholder="Enter Email" onChange={(event)=>{handleEmail(event);}} className="login-field" required/><br />
                 {!isValidEmail && <p className={!isValidEmail ?"err":"noerr"}>Please enter a valid email address.</p>}
@@ -66,10 +67,18 @@ export default function LoginPage(){
                 <button type="submit" className="submit-btn">Submit</button>
                 <button className="signUp-link fpass" onClick={()=>{handleForm("PasswordReset")}}>Forget Password?</button>
             </form>
-        <button className="signUp-link" onClick={()=>{handleForm("Signin")}}>Click here to SignUp</button>
+        <div className="signin-nav-div">
+            <button className="signUp-link" onClick={()=>{handleForm("Signin")}}>Click here to SignUp</button>
+            <button className="signUp-link" onClick={()=>{handleForm("VendorSignin")}}>Vendor SignUp</button>
+        </div>
+
         </div>)}
         {(show === "Signin") && (<div className="form-wrap">
         <SignInPage/>
+        <button className="signUp-link" onClick={()=>{handleForm("Login")}}>Click here to LogIn</button>
+        </div>)}
+        {(show === "VendorSignin") && (<div className="form-wrap">
+        <VendorSignIn/>
         <button className="signUp-link" onClick={()=>{handleForm("Login")}}>Click here to LogIn</button>
         </div>)}
         {(show === "PasswordReset") && (<div className="form-wrap">

@@ -8,6 +8,7 @@ export default function SignInPage(){
     const [isValidName, setIsValidName] = useState(true);
     const [isValidPhno, setIsValidPhno] = useState(true);
     const [name, setName ] = useState("");
+    const [contactPersonName, setContactPersonName] = useState("");
     const [mailId, setMailId] = useState("");
     const [ phoneNo, setPhoneNo] = useState(0);
     const [countryCodeLength, setCountryCodeLength] = useState(0);
@@ -18,7 +19,8 @@ export default function SignInPage(){
     const [showNextPg, setShowNextPg] = useState(false);
     const [selectedImg, setSelectedImg] = useState(null);
     const [textareaVal, setTextareaVal] = useState("");
-    
+    const [gst, setGst] = useState(false);
+    const [gstNo, setGstNo] = useState(0);
     const handleEmail = (event) => {
         const regexp = /^[a-zA-Z0-9]+[^!#$%&~]*@gmail\.(com|in|org)$/;
         const value = event.target.value;
@@ -41,6 +43,17 @@ export default function SignInPage(){
             setIsValidName(false);
         }
     };
+    const handleContactName = (event) =>{
+        const regexp = /^[A-Za-z]+$/;
+        const value = event.target.value;
+        if(regexp.test(value)){
+            setIsValidName(true);
+            setContactPersonName(value);
+        }
+        else{
+            setIsValidName(false);
+        }
+    }
     const handleVisiblility = () =>{
         if(type==='password'){
             setIcon(eye);
@@ -96,12 +109,20 @@ export default function SignInPage(){
             console.log(phoneNo);
             console.log(password);
             console.log(selectedImg);
+            console.log(contactPersonName);
+            console.log(gstNo);
         }
     };
+    const handleGstBtn = (event) =>{
+        setGst(event.target.value);
+    }
+    const handeGstNo = (event) =>{
+        setGstNo(event.target.value);
+    }
     return(
         <form action="" method="post" enctype="multipart/form-data" className="login sign-in" onSubmit={handleSubmit}>
-        <p className="welcome-msg">Hey! Let's Get Started</p>
-        {!showNextPg && (<><input type="text" placeholder="Enter name" onChange={(event)=>{handleName(event);}} className="login-field" required/>
+        <p className="welcome-msg">Vendor's Sign-in page</p>
+        {!showNextPg && (<><input type="text" placeholder="Enter your name" onChange={(event)=>{handleName(event);}} className="login-field" required/>
         {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
         <input type="email" placeholder="Enter Email" onChange={(event)=>{handleEmail(event);}} className="login-field" required/>
         {!isValidEmail && <p className={!isValidEmail ?"err":"noerr"}>Please enter a valid email address.</p>}
@@ -122,12 +143,29 @@ export default function SignInPage(){
         <button type="button" className="submit-btn signin-btn" onClick={handleShow}>Next</button></>)}
 
         {showNextPg && (<>
+            <input type="text" placeholder="Contact person name" onChange={(event)=>{handleContactName(event);}} className="login-field" required/>
+            {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
             <textarea id="address" value={textareaVal} onChange={handleTextarea} rows={6} cols={10} placeholder="Enter your address" className="addTextarea" required></textarea>
+            <div className="gst-inp">
+                <label htmlFor="">
+                    Have GST No:
+                    <label htmlFor="" className="gst-sub">
+                        Yes
+                        <input type="radio" name="GST" value="true" onChange={handleGstBtn}/>
+                    </label>
+                    <label htmlFor="" className="gst-sub">
+                        No
+                        <input type="radio" name="GST" value="false" onChange={handleGstBtn}/>
+                    </label>
+                </label>
+            </div>
+            {gst==="true" && (<input type="text" placeholder="GST No" className="login-field" onChange={(event)=>{handeGstNo(event)}}/>)}
             <div className="imgUpdload">
                 <label htmlFor="imgUpload">Upload your profile Picture</label>
                 <input type="file" id="imgUpload" accept="image/*" onChange={handleImageChange} className="imgUploadBtn" required />
             </div>
-            <button type="submit" className="submit-btn signin-btn">Submit</button>
+            <p style={{margin: "10px"}}>By creating an account you agree to our <a href="# " style={{ color: 'dodgerblue' }}>Terms & Privacy</a>.</p>
+            <button type="submit" className="submit-btn signin-btn">Sign in</button>
         </>)}
     </form>
     );

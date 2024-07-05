@@ -3,9 +3,8 @@ import "./style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
 import logoImg from "./images/logo.png";
-import SignInPage from "./SignInPage";
 import ForgetPassword from "./ForgetPassword";
-// import VendorSignIn from "./VendorSignIn";
+import VendorSignIn from "./VendorSignIn";
 export default function LoginPage(){
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [type, setType] = useState('password');
@@ -70,8 +69,8 @@ export default function LoginPage(){
             <button className="signUp-link" onClick={()=>{handleForm("Signin")}}>Click here to SignUp</button>
         </div>)}
         {(show === "Signin") && (<div className="form-wrap">
-        <SignInPage/>
-        <button className="signUp-link" onClick={()=>{handleForm("Login")}}>Click here to LogIn</button>
+            <VendorSignIn/>
+            <button className="signUp-link" onClick={()=>{handleForm("Login")}}>Click here to LogIn</button>
         </div>)}
         
         {(show === "PasswordReset") && (<div className="form-wrap">

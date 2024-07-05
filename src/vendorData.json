@@ -1,62 +1,83 @@
 [
-  {
+    {
+      "id": 1,
       "name": "Aarav Patel",
       "email": "aarav.patel@example.com",
       "phone": "+91-9876543210",
-      "location": "Mumbai"
-  },
-  {
+      "location": "Mumbai",
+      "rating": 4
+    },
+    {
+      "id": 2,
       "name": "Aisha Sharma",
       "email": "aisha.sharma@example.com",
       "phone": "+91-9876543211",
-      "location": "Delhi"
-  },
-  {
+      "location": "Delhi",
+      "rating": 3
+    },
+    {
+      "id": 3,
       "name": "Rohit Verma",
       "email": "rohit.verma@example.com",
       "phone": "+91-9876543212",
-      "location": "Bangalore"
-  },
-  {
+      "location": "Bangalore",
+      "rating": 5
+    },
+    {
+      "id": 4,
       "name": "Priya Singh",
       "email": "priya.singh@example.com",
       "phone": "+91-9876543213",
-      "location": "Chennai"
-  },
-  {
+      "location": "Chennai",
+      "rating": 2
+    },
+    {
+      "id": 5,
       "name": "Karan Mehta",
       "email": "karan.mehta@example.com",
       "phone": "+91-9876543214",
-      "location": "Hyderabad"
-  },
-  {
+      "location": "Hyderabad",
+      "rating": 4
+    },
+    {
+      "id": 6,
       "name": "Simran Kaur",
       "email": "simran.kaur@example.com",
       "phone": "+91-9876543215",
-      "location": "Kolkata"
-  },
-  {
+      "location": "Kolkata",
+      "rating": 3
+    },
+    {
+      "id": 7,
       "name": "Vikram Reddy",
       "email": "vikram.reddy@example.com",
       "phone": "+91-9876543216",
-      "location": "Pune"
-  },
-  {
+      "location": "Pune",
+      "rating": 5
+    },
+    {
+      "id": 8,
       "name": "Neha Gupta",
       "email": "neha.gupta@example.com",
       "phone": "+91-9876543217",
-      "location": "Ahmedabad"
-  },
-  {
+      "location": "Ahmedabad",
+      "rating": 4
+    },
+    {
+      "id": 9,
       "name": "Arjun Kapoor",
       "email": "arjun.kapoor@example.com",
       "phone": "+91-9876543218",
-      "location": "Jaipur"
-  },
-  {
+      "location": "Jaipur",
+      "rating": 3
+    },
+    {
+      "id": 10,
       "name": "Sanya Ahuja",
       "email": "sanya.ahuja@example.com",
       "phone": "+91-9876543219",
-      "location": "Lucknow"
-  }
-]
+      "location": "Lucknow",
+      "rating": 5
+    }
+  ]
+  

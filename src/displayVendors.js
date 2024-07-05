@@ -6,14 +6,23 @@ import pic2 from "./images/corporate-hall-decor.jpg";
 import pic3 from "./images/marraige-hall.jpg";
 import pic4 from "./images/corporate-hall.jpg";
 import StarRating from "./StarRating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 export default function DisplayVendors(){
     const [vendors, setVendors] = useState([]);
+    // const [wishList, setWishList] = useState({});
     const images = [pic1,pic2,pic3,pic4];
     useEffect(()=>{
-        setVendors(VendorData);
+        const updatedVendors = VendorData.map(vendor => ({ ...vendor, wishlisted: false }));
+        setVendors(updatedVendors);
     },[]);
-    const getRandomRating = () => {
-        return Math.floor(Math.random() * 5) + 1;
+    const toggleWishList = (vendorId) => {
+        setVendors((prevVendors) =>
+            prevVendors.map((vendor) =>
+                vendor.id === vendorId ? { ...vendor, wishlisted: !vendor.wishlisted } : vendor
+            )
+        );
     };
     return(
         <div className="dispVendors-bg">
@@ -26,8 +35,10 @@ export default function DisplayVendors(){
                                 <h4>{vendor.name}</h4>
                                 <div className="rating-div">
                                     <p>{vendor.location}</p>
-                                    <StarRating totalStars={5} initialRating={getRandomRating()}/>
+                                    <StarRating totalStars={5} initialRating={vendor.rating}/>
                                 </div>
+                                <FontAwesomeIcon icon={vendor.wishlisted ? solidHeart : regularHeart} style={{ color: "rgb(255, 0, 0)", cursor: "pointer" }} onClick={() => toggleWishList(vendor.id)}/>
+                                {/* <i class="fa-regular fa-heart" style={{color: "rgb(255, 0, 0)"}}></i> */}
                             </div>
                             <p className="vendor-text">Email: {vendor.email}</p>
                             <p className="vendor-text">Phone: {vendor.phone}</p>

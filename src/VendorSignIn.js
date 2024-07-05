@@ -121,7 +121,7 @@ export default function SignInPage(){
     }
     return(
         <form action="" method="post" enctype="multipart/form-data" className="login sign-in" onSubmit={handleSubmit}>
-        <p className="welcome-msg">Vendor's Sign-in page</p>
+        <p className="welcome-msg">Hey! Let's Get Started</p>
         {!showNextPg && (<><input type="text" placeholder="Enter your name" onChange={(event)=>{handleName(event);}} className="login-field" required/>
         {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
         <input type="email" placeholder="Enter Email" onChange={(event)=>{handleEmail(event);}} className="login-field" required/>

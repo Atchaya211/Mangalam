@@ -13,8 +13,8 @@ export default function VendorHome(){
             <div className="home_body">
                 <div className="loginPage-wrap">
                     <div className="common-text">
-                        <img src={logoImg} alt="" className="bodyLogo"/>
-                        <p className="para">
+                        <img src={logoImg} alt="" className="bodyLogo" style={{marginLeft: "2%"}}/>
+                        <p className="para" style={{marginLeft: "5%"}}>
                             Turning Dreams Into Unforgettable Moments. Your Seamless Event Experience Starts Here With
                         </p>
                         <p className="paraHighlight">
@@ -23,6 +23,7 @@ export default function VendorHome(){
                     </div>
                  </div>
                  <div className="pending-works">
+                    <p className="welcome-msg pending-heading">Pending Orders!!!</p>
                     <div className="notification">
                         <table className="orders-table">
                             {orders.map((order) => (

@@ -21,6 +21,7 @@ import VendorMailVerification from "./VendorMailVerification";
 import VendorBgCheck from "./VendorBgCheck";
 import MyAccountVendor from "./MyAccountVendor"
 import EditProfileVendor from "./EditProfileVendor";
+import Notification from "./Notification";
 import "./style.css";
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
             <Route path="/VendorHome" element={<VendorHome />} />
             <Route path="/MyAccountVendor" element={<MyAccountVendor />} />
             <Route path="/EditProfileVendor" element={<EditProfileVendor />} />
+            <Route path="/VendorHome" element={<VendorHome />} />
+            <Route path="/Notification" element={<Notification />} />
           </Routes>
           <Footer />
         </Router>

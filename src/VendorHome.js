@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 import logoImg from "./images/logo.png";
-import Notification from "./Notification.json";
+import Notification from "./NotificationData.json";
 export default function VendorHome(){
     const [orders, setOrders] = useState([]);
     useEffect(() => {

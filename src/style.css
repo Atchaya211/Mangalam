@@ -963,6 +963,9 @@
 .orders-table td{
     padding: 10px 5px 10px 15px;
 }
+.notify-btn{
+    margin: 5% 0% 0% 0%;
+}
 @media screen and (max-width: 780px) {
     .App-body{
         display: flex;

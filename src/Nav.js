@@ -54,6 +54,7 @@ export default function Nav()
                 {user.role === "vendor" ? (<div className={isHidden?"wrap":"link-wrap"} onClick={handleScreen}>
                 <Link to="/" className="other-page" onClick={handle}>Home</Link>
                 <Link to="/About" className="other-page" onClick={handle}>About</Link>
+                <Link to="/Notification" className="other-page" onClick={handle}>Notification</Link>
                 <Link className="other-page" onClick={showProfileMenu}>Profile</Link>
                     {showProfile && (
                         <SubMenuProfileVendor onClose={hideProfileMenu}/>

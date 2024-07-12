@@ -5,13 +5,13 @@ export default function Booking(){
     return(
         <div className="about_bg">
             <div className="about-body">
-                <div className="loginPage-wrap">
+                <div className="loginPage-wrap" style={{marginTop: "-150px"}}>
                     <div className="common-text">
                         <img src={logoImg} alt="" className="bodyLogo about-common-img"/>
                         <p className="para about-common">
                             Turning Dreams Into Unforgettable Moments. Your Seamless Event Experience Starts Here With
                         </p>
-                        <p className="paraHighlight about-common" style={{marginLeft:"30px"}}>
+                        <p className="paraHighlight about-common" style={{marginLeft:"20%"}}>
                             @Mangalam
                         </p> 
                     </div>

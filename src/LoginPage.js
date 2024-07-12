@@ -1,12 +1,16 @@
 import React,{ useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "./UserContext";
 import "./style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
 import logoImg from "./images/logo.png";
 import SignInPage from "./SignInPage";
 import ForgetPassword from "./ForgetPassword";
-// import VendorSignIn from "./VendorSignIn";
 export default function LoginPage(){
+    const { setUser } = useUser();
+    const navigate = useNavigate();
+
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(eyeClose);
@@ -38,6 +42,15 @@ export default function LoginPage(){
     const handleSubmit=(event)=>{
         event.preventDefault();
     }
+
+    const handleLogin = () => {
+        const loggedInUser = {
+          role: "customer"
+        };
+        setUser(loggedInUser);
+        navigate("/");
+      };
+    
     return(
         <div className="login_signin_wrap">
         <div className="login_signin-body">
@@ -50,7 +63,6 @@ export default function LoginPage(){
           <p className="paraHighlight">
             @Mangalam
           </p>
-          
         </div>
         </div>
         {(show ==="Login") && (<div className="form-wrap">
@@ -64,7 +76,7 @@ export default function LoginPage(){
                         <img src={icon} alt="" className="eye-icon"/>
                     </button>
                 </div><br/>
-                <button type="submit" className="submit-btn">Submit</button>
+                <button type="submit" className="submit-btn" onClick={handleLogin}>Submit</button>
                 <button className="signUp-link fpass" onClick={()=>{handleForm("PasswordReset")}}>Forget Password?</button>
             </form>
             <button className="signUp-link" onClick={()=>{handleForm("Signin")}}>Click here to SignUp</button>
@@ -80,7 +92,5 @@ export default function LoginPage(){
         </div>)}
         </div>
         </div>
-        
-        
     );
 }

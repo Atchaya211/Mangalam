@@ -42,7 +42,7 @@ export default function DisplayVendors(){
                             </div>
                             <p className="vendor-text">Email: {vendor.email}</p>
                             <p className="vendor-text">Phone: {vendor.phone}</p>
-                            <button className="vendor-btn"><a href="/">Check Availability</a></button>
+                            <button className="vendor-btn"><a href="/Booking">Check Availability</a></button>
                         </div>
                     ))}
                 </div>

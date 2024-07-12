@@ -15,14 +15,13 @@ import corporateImg from "./images/corporate_image.jpg";
 import bdayImg1 from "./images/birthday_image.jpg";
 import bdayImg2 from "./images/bday_image.jpg";
 import porposalImg from "./images/proposal_image.jpg";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export default function Home(){
-    const navigate = useNavigate();
-    // const [eventType, setEventType ] = useState("HIII");
-    const handleNavigation = (type) => {
-        navigate('/services', { state: {  data: type } });
-    };
+    // const navigate = useNavigate();
+    // const handleNavigation = (type) => {
+    //     navigate('/services', { state: {  data: type } });
+    // };
     return(
         <div className="home">
             <div className="home_body">
@@ -38,58 +37,41 @@ export default function Home(){
                     </div>
                     <div className="events_link">
                         <a href='/Services' className="events_icon">
-                            <img src={marraigeIcon} alt="" className='events_img' onClick={(e)=>{
-                                e.preventDefault();
-                                handleNavigation("Marraige");
-                            }}/>
+                            <img src={marraigeIcon} alt="" className='events_img'/>
                             <p className="event">Marraige</p>
                         </a>
-                        <a href='/Services' className="events_icon" onClick={(e)=>{
+                        {/* <a href='/Services' className="events_icon" onClick={(e)=>{
                             e.preventDefault();
                             handleNavigation("Haldi");
                         }}>
                             <img src={haldiIcon} alt="" className='events_img'/>
                             <p className="event">Haldi</p>
+                        </a> */}
+                        <a href='/Services' className="events_icon">
+                            <img src={haldiIcon} alt="" className='events_img'/>
+                            <p className="event">Haldi</p>
                         </a>
                         <a href='/Services' className="events_icon">
-                            <img src={engagementIcon} alt="" className='events_img' onClick={(e)=>{
-                                e.preventDefault();
-                                handleNavigation("Engagements");
-                            }}/>
+                            <img src={engagementIcon} alt="" className='events_img'/>
                             <p className="event">Engagements</p>
                         </a>
                         <a href='/Services' className="events_icon">
-                            <img src={corporateIcon} alt="" className='events_img' onClick={(e)=>{
-                                e.preventDefault();
-                                handleNavigation("Corporate Event");
-                            }}/>
+                            <img src={corporateIcon} alt="" className='events_img'/>
                             <p className="event">Corporate Event</p>
                         </a>
-                        <a href='/Services' className="events_icon" onClick={(e)=>{
-                            e.preventDefault();
-                            handleNavigation("Birthdays");
-                        }}>
+                        <a href='/Services' className="events_icon">
                             <img src={cake} alt="" className='events_img'/>
                             <p className="event">Birthdays</p>
                         </a>
-                        <a href='/Services' className="events_icon" onClick={(e)=>{
-                            e.preventDefault();
-                            handleNavigation("Baby Shower");
-                        }}>
+                        <a href='/Services' className="events_icon">
                             <img src={babyShowerIcon} alt="" className='events_img'/>
                             <p className="event">Baby Shower</p>
                         </a>
-                        <a href='/Services' className="events_icon" onClick={(e)=>{
-                            e.preventDefault();
-                            handleNavigation("Proposals");
-                        }}>
+                        <a href='/Services' className="events_icon">
                             <img src={ProposalIcon} alt="" className='events_img'/>
                             <p className="event">Proposals</p>
                         </a>
-                        <a href='/Services' className="events_icon" onClick={(e)=>{
-                            e.preventDefault();
-                            handleNavigation("Other Celebrations");
-                        }}>
+                        <a href='/Services' className="events_icon">
                             <img src={otherIcon} alt="" className='events_img'/>
                             <p className="event">Other Celebrations</p>
                         </a>

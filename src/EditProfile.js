@@ -3,7 +3,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
-export default function SignInPage(){
+export default function EditProfile(){
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidName, setIsValidName] = useState(true);
     const [isValidPhno, setIsValidPhno] = useState(true);
@@ -74,14 +74,27 @@ export default function SignInPage(){
             event.preventDefault();
         }
     };
+    const validatePassword = ()=>{
+        if(confmPass.current.value !== password){
+            alert("Please enter correct password in confirm password field!!");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     const handleShow = ()=>{
-        setShowNextPg(true);
-        // if(isValidEmail && isValidName && isValidPhno && password && confmPass.current && confmPass.current.value === password){
-        //     setShowNextPg(true);
-        // }
-        // else{
-        //     alert("Please fill all the fields!!");
-        // }
+        if(password !== ""){
+            if(validatePassword()){
+                setShowNextPg(true);
+            }
+            else{
+                setShowNextPg(false);
+            }
+        }
+        else{
+            setShowNextPg(true);
+        }
     };
     const handleImageChange =(event)=>{
         setSelectedImg(event.target.files[0]);
@@ -102,7 +115,9 @@ export default function SignInPage(){
     return(
         <div className="editProfile-bg">
             <div className="editProfile-body">
-                <form action="" className="login sign-in" onSubmit={handleSubmit}>
+        {/* <form action="" method="post" enctype="multipart/form-data" className="login sign-in" onSubmit={handleSubmit}> */}
+
+                <form action="" method="post" enctype="application/x-www-form-urlencoded" className="login sign-in" onSubmit={handleSubmit}>
                 <p className="welcome-msg">Updates time!!!</p>
                 <p style={{margin: "-2% 0% -2% 18%"}}>Enter the fields that you want to update...</p>
                 {!showNextPg && (<><input type="text" placeholder="Enter name" onChange={(event)=>{handleName(event);}} className="login-field"/>

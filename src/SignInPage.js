@@ -67,6 +67,15 @@ export default function SignInPage(){
     const handlePassword =(event)=>{
         setPassword(event.target.value);
     };
+    const validatePassword = ()=>{
+        if(confmPass.current.value !== password){
+            alert("Please enter correct password in confirm password field!!");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     const handlePhoneKeyDown = (event) => {
         const input = event.target;
         const cursorPosition = input.selectionStart;
@@ -75,8 +84,13 @@ export default function SignInPage(){
         }
     };
     const handleShow = ()=>{
-        if(isValidEmail && isValidName && isValidPhno && password && confmPass.current && confmPass.current.value === password){
-            setShowNextPg(true);
+        if(isValidEmail && isValidName && isValidPhno && password && confmPass.current && confmPass.current.value){
+            if(validatePassword()){
+                setShowNextPg(true);
+            }
+            else{
+                setShowNextPg(false);
+            }
         }
         else{
             alert("Please fill all the fields!!");
@@ -90,7 +104,7 @@ export default function SignInPage(){
     };
     const handleSubmit=(event)=>{
         event.preventDefault();
-        if(selectedImg){
+        if(selectedImg && textareaVal){
             console.log(name);
             console.log(mailId);
             console.log(phoneNo);

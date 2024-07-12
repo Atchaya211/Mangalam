@@ -80,6 +80,15 @@ export default function SignInPage(){
     const handlePassword =(event)=>{
         setPassword(event.target.value);
     };
+    const validatePassword = ()=>{
+        if(confmPass.current.value !== password){
+            alert("Please enter correct password in confirm password field!!");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     const handlePhoneKeyDown = (event) => {
         const input = event.target;
         const cursorPosition = input.selectionStart;
@@ -88,8 +97,13 @@ export default function SignInPage(){
         }
     };
     const handleShow = ()=>{
-        if(isValidEmail && isValidName && isValidPhno && password && confmPass.current && confmPass.current.value === password){
-            setShowNextPg(true);
+        if(isValidEmail && isValidName && isValidPhno && password && confmPass.current && confmPass.current.value){
+            if(validatePassword()){
+                setShowNextPg(true);
+            }
+            else{
+                setShowNextPg(false);
+            }
         }
         else{
             alert("Please fill all the fields!!");
@@ -103,7 +117,7 @@ export default function SignInPage(){
     };
     const handleSubmit=(event)=>{
         event.preventDefault();
-        if(selectedImg){
+        if(selectedImg && contactPersonName && textareaVal && gst){
             console.log(name);
             console.log(mailId);
             console.log(phoneNo);
@@ -122,7 +136,7 @@ export default function SignInPage(){
     return(
         <form action="" method="post" enctype="multipart/form-data" className="login sign-in" onSubmit={handleSubmit}>
         <p className="welcome-msg">Hey! Let's Get Started</p>
-        {!showNextPg && (<><input type="text" placeholder="Enter your name" onChange={(event)=>{handleName(event);}} className="login-field" required/>
+        {!showNextPg && (<><input type="text" placeholder="Enter your Username" onChange={(event)=>{handleName(event);}} className="login-field" required/>
         {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
         <input type="email" placeholder="Enter Email" onChange={(event)=>{handleEmail(event);}} className="login-field" required/>
         {!isValidEmail && <p className={!isValidEmail ?"err":"noerr"}>Please enter a valid email address.</p>}
@@ -165,7 +179,7 @@ export default function SignInPage(){
                 <input type="file" id="imgUpload" accept="image/*" onChange={handleImageChange} className="imgUploadBtn" required />
             </div>
             <p style={{margin: "10px"}}>By creating an account you agree to our <a href="# " style={{ color: 'dodgerblue' }}>Terms & Privacy</a>.</p>
-            <button type="submit" className="submit-btn signin-btn">Sign in</button>
+            <button type="submit" className="submit-btn signin-btn"><a href="/VendorMobileVerification" style={{color:"white", textDecoration:"none", height:"100%"}}>Sign in</a></button>
         </>)}
     </form>
     );

@@ -36,22 +36,3 @@ export default function MyAccount(){
         </div>
     );
 }
-
-
-/* Rectangle 12 */
-
-// position: absolute;
-// width: 3326px;
-// height: 1942px;
-
-// background: #D9D9D9;
-
-
-/* Rectangle 13 */
-
-// position: absolute;
-// width: 2539.05px;
-// height: 2595.42px;
-
-// background: #D9D9D9;
-// transform: rotate(10.68deg);

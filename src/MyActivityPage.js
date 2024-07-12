@@ -16,7 +16,7 @@ export default function MyActivity(){
                 <div className="eventPlanner"></div>
                 <p style={{fontSize:"large"}}>Looking For Event Planner?</p>
                 <p>make a booking in minutes</p>
-                <a href="/Booking"><button className="book-btn">Book</button></a>
+                <a href="/Services"><button className="book-btn">Book</button></a>
             </div>
         </div>
         <div className="pastBook">  

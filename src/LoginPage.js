@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./UserContext";
+import { loginUser } from './api';
 import "./style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
@@ -10,11 +11,14 @@ import ForgetPassword from "./ForgetPassword";
 export default function LoginPage(){
     const { setUser } = useUser();
     const navigate = useNavigate();
-
     const [isValidEmail, setIsValidEmail] = useState(true);
+    const [email, setEmail] = useState("");
+    const [pwd, setPwd] = useState("");
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(eyeClose);
     const [ show, setShow ] = useState("Login");
+    const [error, setError] = useState(null);
+    const user=false;
     const handleForm = (value) => {
         console.log(value);
         setShow(value);
@@ -24,6 +28,7 @@ export default function LoginPage(){
         const value = event.target.value;
         if(regexp.test(value)){
             setIsValidEmail(true);
+            setEmail(value);
         }
         else{
             setIsValidEmail(false);
@@ -39,17 +44,29 @@ export default function LoginPage(){
             setType("password");
         }
     }
-    const handleSubmit=(event)=>{
+    const handlePassword =(event)=>{
+        setPwd(event.target.value);
+    };
+    const handleSubmit= async (event)=>{
         event.preventDefault();
-    }
-
-    const handleLogin = () => {
-        const loggedInUser = {
-          role: "customer"
-        };
-        setUser(loggedInUser);
-        navigate("/");
-      };
+        console.log(email,pwd);
+        // handleLogin();
+        try{
+            const token = await loginUser(email,pwd,user);
+            localStorage.setItem('token', token);
+            // alert('Login successful');
+            const loggedInUser = {
+                role: "customer"
+              };
+              setUser(loggedInUser);
+              navigate("/");
+        }
+        catch (err) {
+            setError(err.message);
+            alert("Please check your credentials!!!!");
+        }
+    };
+   
     
     return(
         <div className="login_signin_wrap">
@@ -71,12 +88,12 @@ export default function LoginPage(){
                 <input type="email" placeholder="Enter Email" onChange={(event)=>{handleEmail(event);}} className="login-field" required/><br />
                 {!isValidEmail && <p className={!isValidEmail ?"err":"noerr"}>Please enter a valid email address.</p>}
                 <div className="login-field password-wrap">
-                    <input type={type} minLength={8} maxLength={8} placeholder="Enter Password" className="password-inp" required/>
+                    <input type={type} minLength={8} maxLength={8} placeholder="Enter Password" className="password-inp" onChange={(event)=>{handlePassword(event)}} required/>
                     <button onClick={handleVisiblility} className="eye-icon-btn">
                         <img src={icon} alt="" className="eye-icon"/>
                     </button>
                 </div><br/>
-                <button type="submit" className="submit-btn" onClick={handleLogin}>Submit</button>
+                <button type="submit" className="submit-btn">Submit</button>
                 <button className="signUp-link fpass" onClick={()=>{handleForm("PasswordReset")}}>Forget Password?</button>
             </form>
             <button className="signUp-link" onClick={()=>{handleForm("Signin")}}>Click here to SignUp</button>

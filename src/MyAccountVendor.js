@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
+
 export default function MyAccount(){
+    // const [futureEvent, setFutureEvent] = useState([]);
     return(
         <div className="MyAccount-bg">
         <div className="myAccRight">

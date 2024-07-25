@@ -213,9 +213,10 @@
     border-radius: 10px;
     font-family:Arial, Helvetica, sans-serif;
 }
-/* .search-addr{
-    margin: 20% 0% 0% 0%;
-} */
+.in-signin-page{
+    margin: 3% 5%;
+    height: 50px;
+}
 .drop_search{
     display: flex;
     flex-direction: column;
@@ -801,6 +802,24 @@
     display: flex;
     justify-content: space-around;
 }
+.filters-btn-box{
+    margin: 3% 2% -3% 2%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.filters-btn{
+    border: 0px;
+    background-color: #fb53c0;
+    height: 40px;
+    width: 100px;
+    color: #EEE7E7;
+    border-radius: 50px;
+}
+.filters-btn :hover{
+    transform: scale(1.2);
+}
 .dispVendor-wrap::-webkit-scrollbar{
     display: none;
 }
@@ -827,7 +846,7 @@
     pointer-events: auto;
     z-index: 1;
 }
-.vendor-details, .wishList-details{
+.vendor-details, .wishList-details ,.notify-details{
     /* border: 1px solid #ccc; */
     width: 30%;
     height: 80%;
@@ -841,6 +860,7 @@
   .wishList-details{
     width: 80%;
   }
+  
   .dispVendor-img{
     top: 0;
     left: 0;
@@ -964,8 +984,46 @@
     padding: 10px 5px 10px 15px;
 }
 .notify-btn{
-    margin: 5% 0% 0% 0%;
+    margin: 0% 2%;
 }
+.notify-details{
+    height: 400px;
+    width:80%;
+}
+.event-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3% 5% 10% 8%;
+  }
+  
+  .event-details-table td {
+    text-align: left;
+    padding: 8px;
+    vertical-align: top;
+  }
+  
+  .event-details-table tr + tr {
+    border-top: 10px solid transparent;
+  }
+  .event-details-table td:nth-child(2) {
+    font-family: cursive;
+    font-size: large;
+    font-weight: bold;
+  }
+/* .event-details-notification{
+    margin: 50px 0px;   
+}
+.event-details-notification > .vendor-text{
+    font-family: cursive;
+    font-size: large;
+    font-weight: bold;
+}
+.event-details-notification > .vendor-text > span{
+    font-family: cursive;
+    font-size: large;
+    font-weight: 500;
+    margin-right: 30px;
+} */
 @media screen and (max-width: 780px) {
     .App-body{
         display: flex;

@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./style.css";
+import {notify} from "./api";
 import pic1 from "./images/myAccount.png";
 import PhoneInput from "react-phone-input-2";
 import BookingConfirm from "./BookingConfirm";
 export default function Booking(){
     const navigate = useNavigate();
     const availableEvents =[
-        "Hindu Marraige",
-        "Christian Marraige",
-        "Engagement",
-        "Corporate Event",
-        "Birthdays",
-        "Baby Shower",
-        "Proposals",
-        "Other Celebrations"
+        "Venue booking",
+        "theme & decor",
+        "Mehndi artist",
+        "Food & Catering",
+        "event organizer",
+        "Beauty Artisan",
+        "Transportation",
+        "Digital services",
+        "Entertainment"
     ];
     const [eventType, setEventType ] = useState("");
     const availableCities = [
@@ -39,11 +41,36 @@ export default function Booking(){
     };
     const handleCity = (event)=>{
         setCity(event.target.value);
+    };
+    const [address, setAddress] = useState("");
+    const handleAddress = (event)=>{
+        setAddress(event.target.value);
     }
-    const successfullBooking = (event) =>{
+    const [preferences, setPreferences] = useState("");
+    const handlePreference = (event)=>{
+        setPreferences(event.target.value);
+    }
+    const successfullBooking = async (event) =>{
         event.preventDefault();
         if(isValidPhno===true){
-            setShowSuccess(true);
+            const bookingData = {
+                "event_type": eventType,
+                "address" : address,
+                "enter_preferences" : preferences,
+                "phone_no":phoneNo,
+                "city":city,
+                "date":date,
+                "time":time
+            }
+            try {
+                const response = await notify(bookingData);
+                console.log(response);
+                setShowSuccess(true);
+                alert("Notification set to vendor successfully!!!");
+            } catch (error) {
+                alert(error);
+            }
+            console.log(bookingData);   
         }
         else{
             alert("Please Fill all the input fields!!!");
@@ -51,8 +78,8 @@ export default function Booking(){
     }
     const onClose = ()=>{
         setShowSuccess(false);
-        navigate('/MyActivity');
-        
+        alert("Notification sent to vendor");
+        navigate('/'); 
     }
     const handlePhone = (value, country) =>{
         setPhoneNo(value);
@@ -81,6 +108,14 @@ export default function Booking(){
     };
     const minTime = "09:00";
     const maxTime = "17:00";
+    const [date, setDate] = useState("");
+    const handleDate = (event)=>{
+        setDate(event.target.value);
+    }
+    const [time, setTime] = useState("");
+    const handleTime = (event)=>{
+        setTime(event.target.value);
+    }
     return(
         <>
         <div className="booking_bg">
@@ -92,10 +127,10 @@ export default function Booking(){
                         {eventType === '' && <option value="" >Enter event type</option>}
                         {availableEvents.map((current)=>(<option key={current} value={current}>{current}</option>))}
                     </select>
-                    <input type="text" placeholder="Enter full address" className="login-field book" required/>
+                    <input type="text" placeholder="Enter full address" className="login-field book" onChange={handleAddress} required/>
                     <PhoneInput country={"in"} value={phoneNo} onChange={handlePhone} onKeyDown={handlePhoneKeyDown} buttonStyle={{border:"0px",height:"35px",backgroundColor:"transparent", marginTop:"4px"}} inputStyle={{border:"0px",width:"90%"}} containerStyle={{height:"35px", width:"90%",alignSelf:"center", border:"1px solid darkgrey",borderRadius:"10px",padding:"1px",marginTop:"4%", marginLeft:"2%"}}/>
                     {!isValidPhno && <p className={!isValidPhno ?"err":"noerr"}>Please enter a valid phone number.</p>}
-                    <input type="text" placeholder="Enter preferences" className="login-field book" required/>
+                    <input type="text" placeholder="Enter preferences" className="login-field book" onChange={handlePreference} required/>
                 </div>
                 <div>
                     <div className="drop_search">
@@ -107,11 +142,11 @@ export default function Booking(){
                     </div>
                     <div  className="drop_search">
                         <label htmlFor="date">Schedule date</label>
-                        <input id="date" type="date" className="login-field search-addr"  min={getTomorrowDate()}  required/>
+                        <input id="date" type="date" className="login-field search-addr"  min={getTomorrowDate()} onChange={handleDate} required/>
                     </div>
                     <div  className="drop_search">
                         <label htmlFor="time">Schedule time</label>
-                        <input id="time" type="time" className="login-field search-addr" min={minTime} max={maxTime} required/>
+                        <input id="time" type="time" className="login-field search-addr" min={minTime} max={maxTime} onChange={handleTime} required/>
                     </div>
                 </div>
             </div>

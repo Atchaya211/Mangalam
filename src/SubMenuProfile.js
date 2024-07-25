@@ -4,8 +4,8 @@ import { useUser } from "./UserContext";
 export default function SubMenuProfile({onClose, handleUser}){
     const { setUser } = useUser();
     const handleLogin = () => {
-        setUser(null); // Update the user state to null
-        localStorage.removeItem('user'); // Clear the user data from localStorage
+        setUser(null); 
+        localStorage.removeItem('user');
         console.log("User after logout:", localStorage.getItem('user'));
       };
     return(

@@ -13,10 +13,10 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
-      console.log("User set in localStorage:", localStorage.getItem('user')); // Debug statement
+      console.log("User set in localStorage:", localStorage.getItem('user')); 
     } else {
       localStorage.removeItem('user');
-      console.log("User removed from localStorage"); // Debug statement
+      console.log("User removed from localStorage");
     }
   }, [user]);
 

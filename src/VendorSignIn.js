@@ -1,9 +1,12 @@
 import React, {useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
+
 export default function SignInPage(){
+    const navigate = useNavigate();
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidName, setIsValidName] = useState(true);
     const [isValidPhno, setIsValidPhno] = useState(true);
@@ -17,10 +20,45 @@ export default function SignInPage(){
     const [password,setPassword] = useState("");
     const confmPass = useRef(null);
     const [showNextPg, setShowNextPg] = useState(false);
-    const [selectedImg, setSelectedImg] = useState(null);
+    // const [selectedImg, setSelectedImg] = useState(null);
     const [textareaVal, setTextareaVal] = useState("");
     const [gst, setGst] = useState(false);
-    const [gstNo, setGstNo] = useState(0);
+    const [gstNo, setGstNo] = useState("0");
+    // const [service, setService] = useState("");
+    // const [location,setLocation] = useState("");
+    const availableCities = [
+        "Delhi",
+        "Chennai",
+        "Bengaluru",
+        "Mumbai",
+        "Hyderabad",
+        "Ahmedabad",
+        "Kolkata",
+        "Surat",
+        "Pune",
+        "Jaipur"
+      ];
+    const [ city, setCity ] = useState("");
+    const handleCity = (event)=>{
+        setCity(event.target.value);
+    }
+
+    const availableEvents =[
+        "Venue booking",
+        "theme & decor",
+        "Mehndi artist",
+        "Food & Catering",
+        "event organizer",
+        "Beauty Artisan",
+        "Transportation",
+        "Digital services",
+        "Entertainment"
+    ];
+    const [eventType, setEventType ] = useState("");
+    const handleEventType = (event)=>{
+        setEventType(event.target.value);
+    };
+
     const handleEmail = (event) => {
         const regexp = /^[a-zA-Z0-9]+[^!#$%&~]*@gmail\.(com|in|org)$/;
         const value = event.target.value;
@@ -54,6 +92,7 @@ export default function SignInPage(){
             setIsValidName(false);
         }
     }
+    
     const handleVisiblility = () =>{
         if(type==='password'){
             setIcon(eye);
@@ -109,22 +148,43 @@ export default function SignInPage(){
             alert("Please fill all the fields!!");
         }
     };
-    const handleImageChange =(event)=>{
-        setSelectedImg(event.target.files[0]);
-    };
+    // const handleImageChange = (event)=>{
+    //     setSelectedImg(event.target.files[0]);
+    // };
     const handleTextarea= (event)=>{
         setTextareaVal(event.target.value);
     };
-    const handleSubmit=(event)=>{
+    const handleSubmit=  (event)=>{
         event.preventDefault();
-        if(selectedImg && contactPersonName && textareaVal && gst){
-            console.log(name);
-            console.log(mailId);
-            console.log(phoneNo);
-            console.log(password);
-            console.log(selectedImg);
-            console.log(contactPersonName);
-            console.log(gstNo);
+        if(contactPersonName && textareaVal && gst){
+            // console.log(name);
+            // console.log(mailId);
+            // console.log(phoneNo);
+            // console.log(password);
+            // console.log(selectedImg);
+            console.log(eventType);
+            console.log(city);
+            const userData = {
+                "organization_name": name,
+                "person_name":contactPersonName,
+                "full_address": textareaVal,
+                "email_id": mailId,
+                "password": password,
+                "phone_no": phoneNo,
+                "service": eventType,
+                "location": city,
+                "gst_no": gstNo
+            };
+            navigate("/VendorMobileVerification" ,   { state: { userData } });
+
+            // console.log(userData);
+            // try {
+            //     const response = await registerVendor(userData);
+            //     console.log(response);
+            //     alert("Registration successful!");
+            // } catch (error) {
+            //     alert(error);
+            // }
         }
     };
     const handleGstBtn = (event) =>{
@@ -133,6 +193,9 @@ export default function SignInPage(){
     const handeGstNo = (event) =>{
         setGstNo(event.target.value);
     }
+    // const handleService = (event) =>{
+    //     setService(event.target.value);
+    // }
     return(
         <form action="" method="post" enctype="multipart/form-data" className="login sign-in" onSubmit={handleSubmit}>
         <p className="welcome-msg">Hey! Let's Get Started</p>
@@ -160,6 +223,14 @@ export default function SignInPage(){
             <input type="text" placeholder="Contact person name" onChange={(event)=>{handleContactName(event);}} className="login-field" required/>
             {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
             <textarea id="address" value={textareaVal} onChange={handleTextarea} rows={6} cols={10} placeholder="Enter your address" className="addTextarea" required></textarea>
+            <select id="city" value={city} style={{width:"90%"}} className="search-addr in-signin-page" onChange={handleCity} required>
+                    {city === '' && <option value="" >City</option>}
+                    {availableCities.map((current)=>(<option key={current} value={current}>{current}</option>))}
+                </select>
+            <select value={eventType} style={{width:"90%"}} className="search-addr in-signin-page" onChange={handleEventType} required>
+                {eventType === '' && <option value="" >Enter event type</option>}
+                {availableEvents.map((current)=>(<option key={current} value={current}>{current}</option>))}
+            </select>
             <div className="gst-inp">
                 <label htmlFor="">
                     Have GST No:
@@ -174,12 +245,10 @@ export default function SignInPage(){
                 </label>
             </div>
             {gst==="true" && (<input type="text" placeholder="GST No" className="login-field" onChange={(event)=>{handeGstNo(event)}}/>)}
-            <div className="imgUpdload">
-                <label htmlFor="imgUpload">Upload your profile Picture</label>
-                <input type="file" id="imgUpload" accept="image/*" onChange={handleImageChange} className="imgUploadBtn" required />
-            </div>
+            {/* <input type="text" placeholder="Service that you provide" onChange={(event)=>{handleService(event)}} className="login-field" required/>
+             */}
             <p style={{margin: "10px"}}>By creating an account you agree to our <a href="# " style={{ color: 'dodgerblue' }}>Terms & Privacy</a>.</p>
-            <button type="submit" className="submit-btn signin-btn"><a href="/VendorMobileVerification" style={{color:"white", textDecoration:"none", height:"100%"}}>Sign in</a></button>
+            <button type="submit" className="submit-btn signin-btn">Sign in</button>
         </>)}
     </form>
     );

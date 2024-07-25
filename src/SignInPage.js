@@ -1,8 +1,11 @@
 import React, {useState, useRef } from "react";
+import "./style.css";
+import {registerUser} from './api';
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import eye from "./images/eye-solid.svg";
 import eyeClose  from "./images/eye-slash-solid.svg";
+
 export default function SignInPage(){
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidName, setIsValidName] = useState(true);
@@ -16,7 +19,7 @@ export default function SignInPage(){
     const [password,setPassword] = useState("");
     const confmPass = useRef(null);
     const [showNextPg, setShowNextPg] = useState(false);
-    const [selectedImg, setSelectedImg] = useState(null);
+    // const [selectedImg, setSelectedImg] = useState(null);
     const [textareaVal, setTextareaVal] = useState("");
     
     const handleEmail = (event) => {
@@ -96,20 +99,35 @@ export default function SignInPage(){
             alert("Please fill all the fields!!");
         }
     };
-    const handleImageChange =(event)=>{
-        setSelectedImg(event.target.files[0]);
-    };
+    // const handleImageChange =(event)=>{
+    //     setSelectedImg(event.target.files[0]);
+    // };
     const handleTextarea= (event)=>{
         setTextareaVal(event.target.value);
     };
-    const handleSubmit=(event)=>{
+    const handleSubmit= async (event)=>{
         event.preventDefault();
-        if(selectedImg && textareaVal){
+        if(textareaVal){
             console.log(name);
             console.log(mailId);
             console.log(phoneNo);
+            console.log(textareaVal);
             console.log(password);
-            console.log(selectedImg);
+            const userData = {
+                "name": name,
+                "email_id": mailId,
+                "phone_no": phoneNo,
+                "full_address": textareaVal,
+                "pincode":"12356",
+                "password": password
+            };
+            try {
+                const response = await registerUser(userData);
+                console.log(response);
+                alert("Registration successful!");
+            } catch (error) {
+                alert(error);
+            }
         }
     };
     return(
@@ -137,10 +155,10 @@ export default function SignInPage(){
 
         {showNextPg && (<>
             <textarea id="address" value={textareaVal} onChange={handleTextarea} rows={6} cols={10} placeholder="Enter your address" className="addTextarea" required></textarea>
-            <div className="imgUpdload">
+            {/* <div className="imgUpdload">
                 <label htmlFor="imgUpload">Upload your profile Picture</label>
                 <input type="file" id="imgUpload" accept="image/*" onChange={handleImageChange} className="imgUploadBtn" required />
-            </div>
+            </div> */}
             <button type="submit" className="submit-btn signin-btn">Submit</button>
         </>)}
     </form>

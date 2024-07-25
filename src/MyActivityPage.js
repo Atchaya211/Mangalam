@@ -1,7 +1,18 @@
 import React from "react";
 import "./style.css";
-
+// import {upcommingEvents} from "./api";
 export default function MyActivity(){
+    // useEffect(()=>{
+    //     const fetchUpcommingEvents = async ()=>{
+    //         try{
+    //             const data = await upcommingEvents();
+    //             console.log("Data Fetched:",data);
+    //         }catch(err){
+    //             console.log(err);
+    //         }
+    //     };
+    //     fetchUpcommingEvents();
+    // },[])
     return(
         <div className="MyActivity_bg">
         <div className="UpcommingBook">

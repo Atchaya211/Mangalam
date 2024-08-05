@@ -34,7 +34,7 @@ export default function SignInPage(){
         }
     };
     const handleName = (event)=>{
-        const regexp = /^[A-Za-z]+$/;
+        const regexp = /^[A-Za-z ]+$/;
         const value = event.target.value;
         if(regexp.test(value)){
             setIsValidName(true);

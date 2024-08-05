@@ -1,4 +1,5 @@
-import React, {useState, useRef } from "react";
+import React, {useState, useRef, useEffect } from "react";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -26,22 +27,68 @@ export default function SignInPage(){
     const [gstNo, setGstNo] = useState("0");
     // const [service, setService] = useState("");
     // const [location,setLocation] = useState("");
-    const availableCities = [
-        "Delhi",
-        "Chennai",
-        "Bengaluru",
-        "Mumbai",
-        "Hyderabad",
-        "Ahmedabad",
-        "Kolkata",
-        "Surat",
-        "Pune",
-        "Jaipur"
-      ];
-    const [ city, setCity ] = useState("");
-    const handleCity = (event)=>{
-        setCity(event.target.value);
-    }
+    const [states, setStates] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [selectedState, setSelectedState] = useState('');
+    const [selectedDistrict, setSelectedDistrict] = useState('');
+    useEffect(() => {
+        // Fetch states
+        axios.get('https://cdn-api.co-vin.in/api/v2/admin/location/states')
+          .then(response => {
+            setStates(response.data.states);
+            // Set Delhi as the default state
+            const defaultState = response.data.states.find(state => state.state_name === 'Delhi');
+            if (defaultState) {
+              setSelectedState(defaultState.state_name);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching states:', error);
+          });
+      }, []);
+    
+      useEffect(() => {
+        if (selectedState) {
+          // Find the state ID from the state name
+          const state = states.find(state => state.state_name === selectedState);
+          if (state) {
+            // Fetch districts when a state is selected
+            axios.get(`https://cdn-api.co-vin.in/api/v2/admin/location/districts/${state.state_id}`)
+              .then(response => {
+                setDistricts(response.data.districts);
+              })
+              .catch(error => {
+                console.error('Error fetching districts:', error);
+              });
+          }
+        }
+      }, [selectedState, states]);
+    
+      const handleStateChange = (event) => {
+        setSelectedState(event.target.value);
+      };
+    
+      const handleDistrictChange = (event) => {
+        setSelectedDistrict(event.target.value);
+      };
+
+
+    // const availableCities = [
+    //     "Delhi",
+    //     "Chennai",
+    //     "Bengaluru",
+    //     "Mumbai",
+    //     "Hyderabad",
+    //     "Ahmedabad",
+    //     "Kolkata",
+    //     "Surat",
+    //     "Pune",
+    //     "Jaipur"
+    //   ];
+    // const [ city, setCity ] = useState("");
+    // const handleCity = (event)=>{
+    //     setCity(event.target.value);
+    // }
 
     const availableEvents =[
         "Venue booking",
@@ -163,7 +210,7 @@ export default function SignInPage(){
             // console.log(password);
             // console.log(selectedImg);
             console.log(eventType);
-            console.log(city);
+            // console.log(city);
             const userData = {
                 "organization_name": name,
                 "person_name":contactPersonName,
@@ -172,7 +219,7 @@ export default function SignInPage(){
                 "password": password,
                 "phone_no": phoneNo,
                 "service": eventType,
-                "location": city,
+                "location": selectedDistrict,
                 "gst_no": gstNo
             };
             navigate("/VendorMobileVerification" ,   { state: { userData } });
@@ -223,10 +270,20 @@ export default function SignInPage(){
             <input type="text" placeholder="Contact person name" onChange={(event)=>{handleContactName(event);}} className="login-field" required/>
             {!isValidName && <p className={!isValidName ?"err":"noerr"}>Please enter your name correctly.</p>}
             <textarea id="address" value={textareaVal} onChange={handleTextarea} rows={6} cols={10} placeholder="Enter your address" className="addTextarea" required></textarea>
-            <select id="city" value={city} style={{width:"90%"}} className="search-addr in-signin-page" onChange={handleCity} required>
-                    {city === '' && <option value="" >City</option>}
-                    {availableCities.map((current)=>(<option key={current} value={current}>{current}</option>))}
-                </select>
+            <select id="state" value={selectedState} onChange={handleStateChange}  className="search-addr in-signin-page">
+                {states.map(state => (
+                <option key={state.state_id}  value={state.state_name}>
+                    {state.state_name}
+                </option>
+                ))}
+            </select>
+            <select id="district" value={selectedDistrict} onChange={handleDistrictChange}  className="search-addr in-signin-page">
+                {districts.map(district => (
+                <option key={district.district_id} value={district.district_name}>
+                    {district.district_name}
+                </option>
+                ))}
+            </select>
             <select value={eventType} style={{width:"90%"}} className="search-addr in-signin-page" onChange={handleEventType} required>
                 {eventType === '' && <option value="" >Enter event type</option>}
                 {availableEvents.map((current)=>(<option key={current} value={current}>{current}</option>))}

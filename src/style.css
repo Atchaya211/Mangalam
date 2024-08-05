@@ -302,8 +302,9 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 .in-signin-page{
-    margin: 3% 5%;
-    height: 50px;
+    margin: 1% 5%;
+    height: 30px;
+    border-radius: 5px;
 }
 .drop_search{
     display: flex;
@@ -338,7 +339,7 @@
     display: grid;
     grid-template-columns: auto auto;
     font-size: large;
-    margin: -5px 0px 5px 90px;
+    margin: 0px 0px 5px 90px;
 }
 .gst-sub{
     margin-left: 50px;
@@ -346,7 +347,7 @@
 .addTextarea{
     width: 90%;
     align-self: center;
-    margin: 5% 0%;
+    margin-bottom: 1%;
 }
 .submit-btn,.booking_btn{
     padding: 0px;

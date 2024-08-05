@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserProvider, useUser } from "./UserContext";
 import Nav from "./Nav";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Home from "./Home";
 import About from "./About";
 import Login from "./LoginPage";
@@ -22,6 +22,7 @@ import VendorBgCheck from "./VendorBgCheck";
 import MyAccountVendor from "./MyAccountVendor"
 import EditProfileVendor from "./EditProfileVendor";
 import Notification from "./Notification";
+import Questions from "./Questions";
 import "./style.css";
 
 function App() {
@@ -51,8 +52,9 @@ function App() {
             <Route path="/EditProfileVendor" element={<EditProfileVendor />} />
             <Route path="/VendorHome" element={<VendorHome />} />
             <Route path="/Notification" element={<Notification />} />
+            <Route path="/Questions" element={<Questions />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </Router>
       </UserProvider>
     </div>

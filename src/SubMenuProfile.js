@@ -1,12 +1,20 @@
 import React from 'react';
 import "./style.css";
 import { useUser } from "./UserContext";
+import { logoutUser } from './api';
 export default function SubMenuProfile({onClose, handleUser}){
     const { setUser } = useUser();
-    const handleLogin = () => {
-        setUser(null); 
-        localStorage.removeItem('user');
-        console.log("User after logout:", localStorage.getItem('user'));
+    const handleLogin = async () => {
+        try{
+            const token = await logoutUser();
+            console.log(token);
+            localStorage.removeItem('user');
+            console.log("User after logout:", localStorage.getItem('user'));
+            setUser(null); 
+        }
+        catch (err) {
+            alert("Please check your credentials!!!!");
+        }
       };
     return(
         <div className="subMenu" onClick={onClose}>

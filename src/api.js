@@ -249,3 +249,38 @@ export const upcommingEvents = async () => {
         throw error;
     }
 };
+
+export const addToWishlist =async (vendor_id)=>{
+    try{
+        const response = await api.post('/wishlist', {vendor_service_id: vendor_id});
+        return response.data;
+    }
+    catch(err){
+        console.error('Error during notification update:', err);
+        handleAxiosError(err);
+        throw err;
+    }
+}
+
+export const getAllWishlist = async ()=>{
+    try{
+        const response = await api.get('/allwishlist');
+        return response.data;
+    }catch(err){
+        console.error('Error during notification update:', err);
+        handleAxiosError(err);
+        throw err;
+    }
+}
+
+export const removeToWishlist =async (vendor_id)=>{
+    try{
+        const response = await api.post('/removewishlist', {vendor_service_id: vendor_id});
+        return response.data;
+    }
+    catch(err){
+        console.error('Error during notification update:', err);
+        handleAxiosError(err);
+        throw err;
+    }
+}

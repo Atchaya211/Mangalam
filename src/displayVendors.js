@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import { getBeautyArtist, getEntertainment, getDigitalService, getMehendiArtist, getEventOrganizer, getThemeAndDecor } from './api';
+import { Link } from 'react-router-dom';
+import { getBeautyArtist, getEntertainment, getDigitalService, getMehendiArtist, getEventOrganizer, getThemeAndDecor, addToWishlist } from './api';
 import "./style.css";
 import pic1 from "./images/marraige-hall-decor.jpg";
 import pic2 from "./images/corporate-hall-decor.jpg";
@@ -57,6 +58,11 @@ export default function DisplayVendors() {
                     console.log('Fetched data:', data);
                     setVendors(data.themeAndDecore || []);
                 }
+                // if(service === "Packages"){
+                //     const data = await getThemeAndDecor(service);
+                //     console.log('Fetched data:', data);
+                //     setVendors(data.themeAndDecore || []);
+                // }
 
             } catch (error) {
                 console.error("Error fetching vendors:", error);
@@ -70,25 +76,38 @@ export default function DisplayVendors() {
     }, [service]);
 
     const toggleWishList = (vendorId) => {
+        console.log(vendorId);
+        handleWishList(vendorId);
         setVendors((prevVendors) =>
             prevVendors.map((vendor) =>
                 vendor.id === vendorId ? { ...vendor, wishlisted: !vendor.wishlisted } : vendor
             )
         );
+        
     };
+
+    const handleWishList = async (id) =>{
+        try{
+            const wishlist = await addToWishlist(id);
+            console.log(wishlist);
+        }catch(err){
+            alert(err);
+        }
+    }
 
     return (
         <div className="dispVendors-bg">
             <div className="dispVendors-body">
+                <h1>{service}</h1>
+                <div className="filters-btn-box">
+                    <button className="filters-btn">Top picks</button>
+                    <button className="filters-btn">Lowest price</button>
+                    <button className="filters-btn">Nearest to me</button>
+                    <button className="filters-btn">Best Reviewed</button>
+                </div>
                 {loading && <p>Loading...</p>}
                 {error && <p className="error-message">{error}</p>}
                 {!loading && !error && (<>
-                    <div className="filters-btn-box">
-                        <button className="filters-btn">Near-By</button>
-                        <button className="filters-btn">Top-pics</button>
-                        <button className="filters-btn">Low cost</button>
-
-                    </div>
                     <div className="dispVendor-wrap">
                         {vendors.length > 0 ? (
                             vendors.map((vendor, i) => (
@@ -97,7 +116,6 @@ export default function DisplayVendors() {
                                     <div className="vendor-name">
                                         <h4>{vendor.person_name}</h4>
                                         <div className="rating-div">
-                                            {/* <p>{vendor.location}</p> */}
                                             <StarRating totalStars={5} initialRating={vendor.rating}/>
                                         </div>
                                         <FontAwesomeIcon
@@ -108,7 +126,7 @@ export default function DisplayVendors() {
                                     </div>
                                     <p className="vendor-text">Email: {vendor.email_id}</p>
                                     <p className="vendor-text">Phone: {vendor.phone_no}</p>
-                                    <button className="vendor-btn"><a href="/Booking">Check Availability</a></button>
+                                    <button className="vendor-btn"><Link to="/Questions" state={{ service: service }}>Check Availability</Link></button>
                                 </div>
                             ))
                         ) : (
@@ -116,8 +134,6 @@ export default function DisplayVendors() {
                         )}
                     </div>
                 </>)}
-                <div className="corner-bg"></div>
-                <div className="border-bg"></div>
             </div>
         </div>
     );

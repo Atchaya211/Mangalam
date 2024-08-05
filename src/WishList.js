@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
-import VendorData from "./vendorData.json";
 import pic1 from "./images/marraige-hall-decor.jpg";
 import pic2 from "./images/corporate-hall-decor.jpg";
 import pic3 from "./images/marraige-hall.jpg";
 import pic4 from "./images/corporate-hall.jpg";
 import StarRating from "./StarRating";
+import {getAllWishlist} from "./api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
@@ -13,7 +13,16 @@ export default function WishList(){
     const [vendors, setVendors] = useState([]);
     const images = [pic1,pic2,pic3,pic4];
     useEffect(()=>{
-        setVendors(VendorData);
+        const fetchWishlist = async () =>{
+            try{
+                const data = await getAllWishlist();
+                console.log('Fetched data:', data);
+                setVendors(data.wishlist || []);
+            }catch(err){
+                console.error("Error fetching vendors:", err);
+            }
+        };
+        fetchWishlist();
     },[]);
     const toggleWishList = (vendorId) => {
         setVendors((prevVendors) =>
@@ -24,6 +33,7 @@ export default function WishList(){
     };
     return(
         <div className="wishList-bg">
+            <div className="wishlist-center">
             <div className="wishList-body">
                 {vendors.map((vendor, i)=>(
                     <div className="wishList-details" key={i}>
@@ -41,6 +51,7 @@ export default function WishList(){
                         <button className="vendor-btn"><a href="/">Check Availability</a></button>
                     </div>
                     ))}
+            </div>
             </div>
         </div>
     );
